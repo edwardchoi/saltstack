@@ -1,15 +1,3 @@
-nginx:
-  pkg:
-    - installed
-  service.running:
-    - enable: True
-    - watch:
-      - pkg: nginx
-      - file: /etc/nginx/nginx.conf
-      - file: /etc/nginx/conf.d/open.os.sg.conf
-      - file: /etc/nginx/conf.d/os.sg.conf
-      - file: /etc/nginx/conf.d/sgandroid.com.conf
-
 wwww-dir:
   file.directory:
    - user: root
@@ -23,6 +11,22 @@ wwww-dir:
      - /var/www/os.sg/public_html
      - /var/www/sgandroid.com/logs
      - /var/www/sgandroid.com/public_html
+
+nginx:
+  pkg:
+    - installed
+  service.running:
+    - enable: True
+    - watch:
+      - pkg: nginx
+      - file: /etc/nginx/nginx.conf
+      - file: /etc/nginx/conf.d/open.os.sg.conf
+      - file: /etc/nginx/conf.d/os.sg.conf
+      - file: /etc/nginx/conf.d/sgandroid.com.conf
+
+httpd:
+  pkg:
+    - removed
 
 /etc/nginx/nginx.conf:
   file.managed:
@@ -51,4 +55,3 @@ wwww-dir:
     - user: root
     - group: root
     - mode: 640
-

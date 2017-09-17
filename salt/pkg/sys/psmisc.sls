@@ -1,0 +1,3 @@
+psmisc:
+  pkg:
+   - installed
